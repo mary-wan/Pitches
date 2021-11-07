@@ -10,13 +10,12 @@
         <div class="card-body">
           <p class="m-0 p-0"><strong>{{pitch.title}}</strong></p>
           <p class="m-0 p-0">{{pitch.post}}</p><br>
-          <p class="pb-2 m-0">{{pitch.comment.count()}} comments</p>
           <div>
-            <span class="pl-2"><a href="{{url_for('main.upvote',id = pitch.id)}}"><i class="fa fa-thumbs-up"
-                  style="font-size:18px;color: green"></i></a> {{pitch.upvote.count()}}</span>
-            <span class="pl-2"><a href="{{url_for('main.downvote',id = pitch.id)}}"> <i class="fa fa-thumbs-down"
-                  style="color:red;"></i> {{pitch.downvote.count()}}</a></span>
-            <span class="pl-5"><a href="{{url_for('main.comment',pitch_id = pitch.id)}}" class="btn btn-outline-primary btn-sm"> Comment</a></span>
+            <span class="pl-3"><a href="{{url_for('main.upvote',id = pitch.id)}}"> <img src="{{url_for('static', filename='photos/like.png')}}" alt=""
+              class="icon"></a> {{pitch.upvote.count()}}</span>
+            <span class="pl-3"><a class="text-dark" href="{{url_for('main.downvote',id = pitch.id)}}"> <img src="{{url_for('static', filename='photos/dislike.png')}}" alt=""
+              class="icon"> {{pitch.downvote.count()}}</a></span>
+            <span class="pl-4"><a href="{{url_for('main.comment',pitch_id = pitch.id)}}" class="btn btn-outline-primary btn-sm"> Comment</a></span>
             <!-- <span class="pl-5">{{pitch.comment.count()}} comments</span> -->
           </div><br>
           <!-- <p class="p-0 m-0">{{pitch.comment.count()}} comments</p> -->
