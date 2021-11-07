@@ -5,8 +5,8 @@ from  flask_migrate import Migrate, MigrateCommand
 from app.models import User,Pitch,Upvote,Downvote,Comment
 
 # Creating app instance
-app = create_app('development')
-# app = create_app('production')
+# app = create_app('development')
+app = create_app('production')
 # app = create_app('test')
 
 
