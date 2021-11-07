@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato:ital,wght@0,400;1,300&display=swap');
+
+body{
+    font-family: 'Lato', sans-serif;
+    overflow-x: none !important;
+}
+
+.navbar-brand{
+    font-family: 'Aladin', cursive;
+}
+.navbar,footer{
+    background-color: #bb8375 !important;
+}
+.navbar a:hover{
+    font-weight: 900;
+}
+footer p{
+    padding: 0px !important;
+    margin: 0px !important;
+}
