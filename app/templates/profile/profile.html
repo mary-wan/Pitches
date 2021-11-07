@@ -28,7 +28,7 @@
             <p> {{user.username| capitalize}} has no bio </p>
             {% endif %}
             {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',uname=user.username)}}">Click Here to Add Bio</a>
+            <a href="{{url_for('main.update_profile',uname=user.username)}}">Click Here to Update Bio</a>
             <form class="mt-4" action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
                 <p class="title ">Update Profile photo</p>
                 <input type="file"  name="photo" class="form-control" required><br>
@@ -36,10 +36,18 @@
               </form>
             {% endif %}
         </div>
-
+        <div class="col-md-3"></div>
         <div class="col-md-4">
-
-          
+            <h6>My Posts</h6>
+            {% if user == current_user %}
+            {% for post in posts%}
+            <div class="pitches">
+                <h5>Title: {{i.title}}</h5>
+                <h6>{{i.post}}</h6>
+                <p>{{i.comment.count()}} Comments</p>
+            </div>
+            {%endfor%}
+            {% endif %}
         </div>
     </div>
 </div>
