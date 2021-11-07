@@ -40,7 +40,7 @@ def comment(pitch_id):
     if form.validate_on_submit():
         comment = form.comment.data 
         pitch_id = pitch_id
-        new_comment = Comment(comment = comment,pitch_id = pitch_id)
+        new_comment = Comment(comment = comment,pitch_id = pitch_id,user=current_user)
         new_comment.save_comment()
         return redirect(url_for('.comment', pitch_id = pitch_id))
     

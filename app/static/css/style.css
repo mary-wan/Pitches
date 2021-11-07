@@ -51,4 +51,6 @@ footer p{
 .italic{
     font-family: 'Lato', sans-serif;
 }
-
+.card{
+    padding: 0px !important;
+}

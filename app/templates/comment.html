@@ -7,23 +7,21 @@
 {% block content %}
 <div class="container pt-3">
     <div class="row">
-
-        {% if all_comments %}
+        {% if comments %}
         <div class="col-md-5">
             <h3 class="text-center title italic">Comments for the Post</h3>
             {% for comment in comments %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5>{{comment.pitch.title}}</h5>
+                    <h6 class="card-header m-0">{{comment.pitch.title}}</h6>
                     <p class="card-title">{{ comment.comment }}</p>
-                    <p class="card-text">--- {{comment.user.username}}</p>
+                    <p class="card-text">--- {{comment.user.username}} ---</p>
                 </div>
             </div>
             {% endfor %}
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5 pt-3">
-
             {{wtf.quick_form(form ,button_map={'submit':'success'})}}
         </div>
     </div>
