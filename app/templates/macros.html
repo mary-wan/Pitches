@@ -4,12 +4,12 @@
 				{% if pitches %}
 					{% for category in pitches %}
 					<div class="col-md-4" >
-						<div class="thumbnail" id="carded">
+						<div class="card">
 							<h5 class="card-header">{{category.title}}</h5>
 							<div class="card-body">
 									<p>{{category.post}}</p>
 									<p class="text-center"> Category: {{category.category}}</p>
-									<footer class="blockquote-footer text-center" > Posted by: {{category.user.username}}</footer>
+									<p class="blockquote-footer text-center" > Posted by: {{category.user.username}}</p>
 								<div><span class="foot" >{{category.comment.count()}} Comments</span> 
 									<span class="foot" > <a href="{{url_for('main.upvote',id = category.id)}}"><i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i></a> {{category.upvote.count()}}</span>
 									
