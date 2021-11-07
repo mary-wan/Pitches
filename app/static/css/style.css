@@ -1,9 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato:ital,wght@0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lato:ital,wght@1,300&display=swap');
+@font-face {
+    font-family: 'latoblack';
+    src: url('../fonts/lato_black-webfont.woff2') format('woff2'),
+         url('../fonts/lato_black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'latobold';
+    src: url('../fonts/lato_bold-webfont.woff2') format('woff2'),
+         url('../fonts/lato_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'latoregular';
+    src: url('../fonts/lato_regular-webfont.woff2') format('woff2'),
+         url('../fonts/lato_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 body{
-    font-family: 'Lato', sans-serif;
+    font-family: 'latoregular', sans-serif;
     overflow-x: none !important;
+    font-size: 15px !important;
 }
 
 .navbar-brand{
@@ -20,5 +46,9 @@ footer p{
     margin: 0px !important;
 }
 .title{
-    color: brown !important;
+    color: #df9380 !important;
 }
+.italic{
+    font-family: 'Lato', sans-serif;
+}
+
