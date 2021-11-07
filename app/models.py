@@ -16,7 +16,11 @@ class User(db.Model,UserMixin):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    # reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
+    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
+    upvote = db.relationship('Upvote',backref='user',lazy='dynamic')
+    downvote = db.relationship('Downvote',backref='user',lazy='dynamic')
+    comment = db.relationship('Comment', backref='user', lazy='dynamic')
+    
   
     @property
     def password(self):
@@ -38,12 +42,13 @@ class Pitch(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(255),nullable = False)
     post = db.Column(db.Text(), nullable = False)
+    time = db.Column(db.DateTime, default = datetime.utcnow)
+    category = db.Column(db.String(255), index = True,nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comment = db.relationship('Comment',backref='pitch',lazy='dynamic')
     upvote = db.relationship('Upvote',backref='pitch',lazy='dynamic')
     downvote = db.relationship('Downvote',backref='pitch',lazy='dynamic')
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    time = db.Column(db.DateTime, default = datetime.utcnow)
-    category = db.Column(db.String(255), index = True,nullable = False)
+
     
     def save_pitch(self):
         db.session.add(self)

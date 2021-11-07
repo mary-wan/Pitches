@@ -21,9 +21,9 @@ def new_pitch():
         title = form.title.data
         post = form.post.data
         category = form.category.data
-        user_id = current_user
-        new_pitch_object = Pitch(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
-        new_pitch_object.save_pitch()
+
+        new_pitch = Pitch(title = title,post=post,category=category,user=current_user)
+        new_pitch.save_pitch()
         return redirect(url_for('main.index'))
         
     return render_template('new_pitch.html', form = form)

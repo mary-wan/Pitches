@@ -1,17 +1,35 @@
-{% macro displayPitches(pitches) %}
-
-    {% for pitch in pitches %}
-
-    <div class="row">
-
-      <div class="col-xs-2 col-sm-2 col-md-4 col-lg-4">
-        <h4>Author</h4>
-        <p>{{pitch.user.username}}</p>
-      </div>
-      <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
-        <h2> <a href="{{url_for('main.single_review',id=review.id)}}">{{review.movie_title}}</a> </h2>
-      </div>
-    </div>
-
-    {% endfor %}
+{% macro display(pitches) %}
+<div class="container-fluid">
+		<div class="row">
+				{% if pitches %}
+					{% for category in pitches %}
+					<div class="col-md-4" >
+						<div class="thumbnail" id="carded">
+							<h5 class="card-header">{{category.title}}</h5>
+							<div class="card-body">
+									<p>{{category.post}}</p>
+									<p class="text-center"> Category: {{category.category}}</p>
+									<footer class="blockquote-footer text-center" > Posted by: {{category.user.username}}</footer>
+								<div><span class="foot" >{{category.comment.count()}} Comments</span> 
+									<span class="foot" > <a href="{{url_for('main.upvote',id = category.id)}}"><i class="fa fa-thumbs-up" style="font-size:18px;color: green"></i></a> {{category.upvote.count()}}</span>
+									
+									
+									<span class="foot"> <a href="{{url_for('main.downvote',id = category.id)}}"> <i class="fa fa-thumbs-down" style="color:red;"></i> {{category.downvote.count()}}</a></span></div>
+			
+								<a href="{{url_for('main.comment',pitch_id = category.id)}}" class="btn btn-info btn-sm"> Comment</a>
+							</div>
+						</div>
+					</div>
+					
+					{% endfor %}
+				{% else %}
+				<div class="card w-90 mb-3">
+					<div class="card-body">
+				
+						<p class="card-title">Category Has 0 posts</p>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+</div>
 {% endmacro %}
