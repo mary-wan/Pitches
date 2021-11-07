@@ -6,6 +6,7 @@ from app.models import User
 
 # Creating app instance
 app = create_app('development')
+app = create_app('production')
 # app = create_app('test')
 # app = create_app('production')
 
