@@ -7,7 +7,7 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Save')
     
 class CommentForm(FlaskForm):
-    comment = TextAreaField('Leave a comment',validators=[Required()])
+    comment = TextAreaField('Add a comment',validators=[Required()])
     submit = SubmitField('Comment')
     
 class PitchForm(FlaskForm):

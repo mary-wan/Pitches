@@ -18,6 +18,7 @@ def register():
         db.session.commit()
         
         mail_message("Welcome to Pitches","email/welcome_user",user.email,user=user)
+        flash('Account successfully created. Please log in')
         return redirect(url_for('auth.login'))
         title = "New Account"
     return render_template('auth/register.html',registration_form = form)
@@ -40,4 +41,5 @@ def login():
 @login_required
 def logout():
     logout_user()
+    flash('You have been logged out')
     return redirect(url_for("main.index"))

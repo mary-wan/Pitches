@@ -4,6 +4,7 @@ from flask_login import login_required,current_user
 from ..models import User,Pitch,Comment,Upvote,Downvote
 from .forms import UpdateProfile,PitchForm,CommentForm
 from .. import db,photos
+import datetime
 
 @main.route('/')
 def index():
@@ -23,7 +24,7 @@ def new_pitch():
         title = form.title.data
         post = form.post.data
         category = form.category.data
-
+        
         new_pitch = Pitch(title = title,post=post,category=category,user=current_user)
         new_pitch.save_pitch()
         return redirect(url_for('main.index'))
@@ -39,8 +40,7 @@ def comment(pitch_id):
     if form.validate_on_submit():
         comment = form.comment.data 
         pitch_id = pitch_id
-        user_id = current_user._get_current_object().id
-        new_comment = Comment(comment = comment,user_id = user_id,pitch_id = pitch_id)
+        new_comment = Comment(comment = comment,pitch_id = pitch_id)
         new_comment.save_comment()
         return redirect(url_for('.comment', pitch_id = pitch_id))
     
