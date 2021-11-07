@@ -20,7 +20,7 @@
         </div>
       {% endfor %}
       <!-- Login form -->
-      {{wtf.quick_form(login_form, button_map={'submit':'success'})}}
+      {{wtf.quick_form(login_form, button_map={'submit':'outline-primary'})}}
       <p> Don't have an account? <a href="{{url_for('auth.register')}}"> Click here to register.</a></p>
      </div>
     </div>

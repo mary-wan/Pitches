@@ -11,7 +11,7 @@
         <div class="col-md-5">
             <h3 class="text-center title italic">Comments for the Post</h3>
             {% for comment in comments %}
-            <div class="card mb-3">
+            <div class="card mb-2 p-0">
                 <div class="card-body">
                     <h6 class="card-header m-0">{{comment.pitch.title}}</h6>
                     <p class="card-title">{{ comment.comment }}</p>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5 pt-3">
-            {{wtf.quick_form(form ,button_map={'submit':'success'})}}
+            {{wtf.quick_form(form ,button_map={'submit':'outline-primary'})}}
         </div>
     </div>
     {%else%}
@@ -36,7 +36,7 @@
     </div>
     <div class="col-md-2"></div>
     <div class="col-md-5">
-        {{wtf.quick_form(form, button_map={'submit':'success'})}}
+        {{wtf.quick_form(form, button_map={'submit':'outline-primary'})}}
     </div>
 
     {%endif%}

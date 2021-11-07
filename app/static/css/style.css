@@ -54,3 +54,6 @@ footer p{
 .card{
     padding: 0px !important;
 }
+.card-body{
+    padding: 0px 5px 0px 5px !important;
+}
