@@ -45,7 +45,7 @@ class Pitch(db.Model):
     time = db.Column(db.DateTime, default = datetime.utcnow)
     category = db.Column(db.String(255), index = True,nullable = False)
     
-    def save_p(self):
+    def save_pitch(self):
         db.session.add(self)
         db.session.commit()
 
