@@ -11,7 +11,7 @@
         {% if all_comments %}
         <div class="col-md-5">
             <h3 class="text-center title italic">Comments for the Post</h3>
-            {% for comment in all_comments %}
+            {% for comment in comments %}
             <div class="card mb-3">
                 <div class="card-body">
                     <h5>{{comment.pitch.title}}</h5>

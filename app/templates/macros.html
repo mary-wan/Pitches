@@ -7,10 +7,8 @@
       <div class="card m-1 p-0">
         <p class="card-header">Category: {{pitch.category}}</p>
         <div class="card-body">
-          <p>Title: {{pitch.title}}</p>
-          <p>Pitch: {{pitch.post}}</p>
-          <p class="text-center"> Posted: {{pitch.time}}</p>
-
+          <p class="m-0 p-0"><strong>{{pitch.title}}</strong></p>
+          <p class="m-0 p-0">{{pitch.post}}</p><br>
           <div>
             <span class="pl-2"><a href="{{url_for('main.upvote',id = pitch.id)}}"><i class="fa fa-thumbs-up"
                   style="font-size:18px;color: green"></i></a> {{pitch.upvote.count()}}</span>
