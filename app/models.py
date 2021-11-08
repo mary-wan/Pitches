@@ -4,8 +4,8 @@ from flask_login import UserMixin
 from datetime import datetime
 
 @login_manager.user_loader
-def load_user(usr_id):
-    return User.query.get(int(usr_id))
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class User(db.Model,UserMixin):
     __tablename__ = "users"
@@ -44,7 +44,7 @@ class Pitch(db.Model):
     post = db.Column(db.Text())
     time = db.Column(db.DateTime, default = datetime.utcnow)
     category = db.Column(db.String(255), index = True)
-    usr_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comment = db.relationship("Comment",backref="pitch",lazy="dynamic")
     upvote = db.relationship("Upvote",backref="pitch",lazy="dynamic")
     downvote = db.relationship("Downvote",backref="pitch",lazy="dynamic")
@@ -63,7 +63,7 @@ class Upvote(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"))
-    usr_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     
     def save(self):
         db.session.add(self)
@@ -76,13 +76,13 @@ class Upvote(db.Model):
 
 
     def __repr__(self):
-        return f'{self.usr_id}:{self.pitch_id}'
+        return f'{self.user_id}:{self.pitch_id}'
 class Downvote(db.Model):
     __tablename__ = "downvotes"
 
     id = db.Column(db.Integer,primary_key=True)
     pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"))
-    usr_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
    
     def save(self):
         db.session.add(self)
@@ -93,7 +93,7 @@ class Downvote(db.Model):
         return downvote
 
     def __repr__(self):
-        return f'{self.usr_id}:{self.pitch_id}'
+        return f'{self.user_id}:{self.pitch_id}'
 
 
 class Comment(db.Model):
@@ -101,7 +101,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.Text())
     pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"))
-    usr_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
     def save_comment(self):
         db.session.add(self)

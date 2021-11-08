@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: ada9b5cca4c3
+Revision ID: 8132b7ec0a95
 Revises: 
-Create Date: 2021-11-08 12:25:04.341086
+Create Date: 2021-11-08 13:25:54.721014
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ada9b5cca4c3'
+revision = '8132b7ec0a95'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,8 +36,8 @@ def upgrade():
     sa.Column('post', sa.Text(), nullable=True),
     sa.Column('time', sa.DateTime(), nullable=True),
     sa.Column('category', sa.String(length=255), nullable=True),
-    sa.Column('usr_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['usr_id'], ['users.id'], ),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_pitches_category'), 'pitches', ['category'], unique=False)
@@ -45,25 +45,25 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('comment', sa.Text(), nullable=True),
     sa.Column('pitch_id', sa.Integer(), nullable=True),
-    sa.Column('usr_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['pitch_id'], ['pitches.id'], ),
-    sa.ForeignKeyConstraint(['usr_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('downvotes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('pitch_id', sa.Integer(), nullable=True),
-    sa.Column('usr_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['pitch_id'], ['pitches.id'], ),
-    sa.ForeignKeyConstraint(['usr_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('upvotes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('pitch_id', sa.Integer(), nullable=True),
-    sa.Column('usr_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['pitch_id'], ['pitches.id'], ),
-    sa.ForeignKeyConstraint(['usr_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
