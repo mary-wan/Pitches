@@ -89,12 +89,12 @@ def update_pic(uname):
 @main.route('/like/<int:id>',methods = ['POST','GET'])
 @login_required
 def upvote(id):
-    get_pitches = Upvote.get_upvotes(id)
-    valid_string = f'{current_user.id}:{id}'
-    for pitch in get_pitches:
-        to_str = f'{pitch}'
-        print(valid_string+" "+to_str)
-        if valid_string == to_str:
+    pitches = Upvote.get_upvotes(id)
+    usr_id = f'{current_user.id}:{id}'
+    for pitch in pitches:
+        to_string = f'{pitch}'
+        print(usr_id+" "+to_string)
+        if usr_id == to_string:
             return redirect(url_for('main.index',id=id))
         else:
             continue
@@ -105,12 +105,12 @@ def upvote(id):
 @main.route('/dislike/<int:id>',methods = ['POST','GET'])
 @login_required
 def downvote(id):
-    pitch = Downvote.get_downvotes(id)
-    valid_string = f'{current_user.id}:{id}'
-    for p in pitch:
-        to_str = f'{p}'
-        print(valid_string+" "+to_str)
-        if valid_string == to_str:
+    pitches = Downvote.get_downvotes(id)
+    usr_id = f'{current_user.id}:{id}'
+    for pitch in pitches:
+        to_string = f'{pitch}'
+        print(usr_id+" "+to_string)
+        if usr_id == to_string:
             return redirect(url_for('main.index',id=id))
         else:
             continue
