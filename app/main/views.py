@@ -59,7 +59,6 @@ def profile(uname):
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
-
     user = User.query.filter_by(username = uname).first()
     if user is None:
         abort(404)
@@ -75,17 +74,6 @@ def update_profile(uname):
 
     return render_template('profile/update.html',form =form)
 
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
-@login_required
-def update_pic(uname):
-    user = User.query.filter_by(username = uname).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic_path = path
-        db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
-
 @main.route('/like/<int:id>',methods = ['POST','GET'])
 @login_required
 def upvote(id):
@@ -93,7 +81,6 @@ def upvote(id):
     usr_id = f'{current_user.id}:{id}'
     for pitch in pitches:
         to_string = f'{pitch}'
-        print(usr_id+" "+to_string)
         if usr_id == to_string:
             return redirect(url_for('main.index',id=id))
         else:
@@ -109,7 +96,6 @@ def downvote(id):
     usr_id = f'{current_user.id}:{id}'
     for pitch in pitches:
         to_string = f'{pitch}'
-        print(usr_id+" "+to_string)
         if usr_id == to_string:
             return redirect(url_for('main.index',id=id))
         else:
@@ -117,3 +103,14 @@ def downvote(id):
     new_downvote = Downvote(user = current_user, pitch_id=id)
     new_downvote.save()
     return redirect(url_for('main.index',id = id))
+
+@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(uname):
+    user = User.query.filter_by(username = uname).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',uname=uname))
