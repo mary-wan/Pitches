@@ -16,12 +16,10 @@
             <span class="pl-3"><a class="text-dark" href="{{url_for('main.downvote',id = pitch.id)}}"> <img src="{{url_for('static', filename='photos/dislike.png')}}" alt=""
               class="icon"> {{pitch.downvote.count()}}</a></span>
             <span class="pl-4"><a href="{{url_for('main.comment',pitch_id = pitch.id)}}" class="btn btn-outline-primary btn-sm"> Comment</a></span>
-            <!-- <span class="pl-5">{{pitch.comment.count()}} comments</span> -->
           </div><br>
-          <!-- <p class="p-0 m-0">{{pitch.comment.count()}} comments</p> -->
         </div>
         <div class="card-footer text-muted">
-          <p class="text-center p-0 m-0">Posted by: {{pitch.user.username}}</p>
+          <p class="text-center p-0 m-0">Posted by: {{pitch.user.username}} on {{pitch.time.strftime('%Y-%m-%d')}}</p>
         </div>
       </div>
     </div>
